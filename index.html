@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTM & GA4 Practice Store</title>
+
+  <!-- Add your Google Tag Manager code here later -->
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #222;
+    }
+    header {
+      background: #172554;
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    nav {
+      background: #1e40af;
+      padding: 14px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 12px;
+      text-decoration: none;
+    }
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .product {
+      background: white;
+      padding: 22px;
+      border-radius: 10px;
+      flex: 1;
+      min-width: 180px;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: 0;
+      border-radius: 5px;
+      padding: 12px;
+      cursor: pointer;
+    }
+    input, textarea {
+      display: block;
+      width: 95%;
+      padding: 12px;
+      margin: 12px 0;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Practice Store</h1>
+  <p>Your GTM & GA4 Training Website</p>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#products">Products</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+  <section id="home">
+    <h2>Welcome to Our Store</h2>
+    <p>Explore products and practise tracking customer interactions.</p>
+    <button id="explore-button" onclick="document.getElementById('products').scrollIntoView()">
+      Explore Products
+    </button>
+  </section>
+
+  <section id="products">
+    <h2>Our Products</h2>
+    <div class="products">
+      <div class="product">
+        <h3>Classic T-Shirt</h3>
+        <p>Price: ₹499</p>
+        <button onclick="addToCart('Classic T-Shirt', 499)">
+          Add to Cart
+        </button>
+      </div>
+      <div class="product">
+        <h3>Sports Shoes</h3>
+        <p>Price: ₹1,499</p>
+        <button onclick="addToCart('Sports Shoes', 1499)">
+          Add to Cart
+        </button>
+      </div>
+      <div class="product">
+        <h3>Smart Watch</h3>
+        <p>Price: ₹2,499</p>
+        <button onclick="addToCart('Smart Watch', 2499)">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+    <p id="cart-message">Cart items: 0</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+      <input name="name" placeholder="Your name" required>
+      <input name="email" type="email" placeholder="Your email" required>
+      <textarea name="message" placeholder="Your message" required></textarea>
+      <button type="submit">Submit Form</button>
+    </form>
+    <p id="form-message"></p>
+  </section>
+</main>
+
+<script>
+  let cartItems = 0;
+
+  function addToCart(product, price) {
+    cartItems++;
+    document.getElementById('cart-message').textContent =
+      'Cart items: ' + cartItems;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'add_to_cart',
+      product_name: product,
+      price: price
+    });
+  }
+
+  document.getElementById('contact-form').addEventListener('submit',
+    function(event) {
+      event.preventDefault();
+      document.getElementById('form-message').textContent =
+        'Demo form submitted successfully!';
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'demo_form_submit'
+      });
+    }
+  );
+</script>
+
+</body>
+</html>
