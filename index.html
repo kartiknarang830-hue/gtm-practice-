@@ -385,6 +385,7 @@ track("demo_form_submit",{form_name:"contact"});
 document.getElementById("contactNotice").textContent=
 "Demo message submitted successfully!";
 this.reset();
+window.location.href = "thank-you.html";
 });
 
 document.getElementById("newsletterForm").addEventListener("submit",function(e){
